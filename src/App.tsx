@@ -4,12 +4,16 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { jsx } from 'react/jsx-runtime'
 import {CardExample} from './components/components.tsx'
+import Background from "./components/Background.tsx";
 
 function App() {
   const [count, setCount] = useState(1)
 return(
-    <div className='pika-title font-extrabold'>
-    <h1>Wagmi Grants</h1>
+    <div className="relative">
+        <h1 className="text-4xl font-extrabold text-white relative top-8 left-1/2 transform -translate-x-1/2 z-10">
+            Wagmi Grants
+        </h1>
+        <Background/>
   <div className="flex flex-wrap gap-4 p-4">
   {/* Using map() to render multiple CardExample components */}
     {Array.from({ length: 12 }, (_, i) => (
