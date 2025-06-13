@@ -1,36 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { jsx } from 'react/jsx-runtime'
-import {CardExample} from './components/components.tsx'
-import Background from "./components/Background.tsx";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Header from './components/Header';
+import Auth from './components/Auth';
+import ProjectSubmission from './components/ProjectSubmission';
+import About from './components/About';
+import Contact from './components/Contact';
+import Grants from './components/Grants';
+import Background from './components/Background';
+import './App.css';
+
+// Protected Route component
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const isAuthenticated = localStorage.getItem('authToken') !== null;
+  return isAuthenticated ? <>{children}</> : <Navigate to="/" replace />;
+};
 
 function App() {
-  const [count, setCount] = useState(1)
-return(
-    <div className="relative">
-        <h1 className="text-4xl font-extrabold text-white relative top-8 left-1/2 transform -translate-x-1/2 z-10">
-            Wagmi Grants
-        </h1>
-        <Background/>
-  <div className="flex flex-wrap gap-4 p-4">
-  {/* Using map() to render multiple CardExample components */}
-    {Array.from({ length: 12 }, (_, i) => (
-        <CardExample key={i} />
-    ))}
-</div>
-    </div>
-)
+  return (
+    <Router>
+      <div className="relative min-h-screen">
+        <Background />
+        <div className="relative z-10">
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={
+                <div className="container mx-auto px-4">
+                  <div className="max-w-6xl mx-auto">
+                    <Auth />
+                  </div>
+                </div>
+              } />
+              <Route 
+                path="/submit-project" 
+                element={
+                  <ProtectedRoute>
+                    <ProjectSubmission />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/grants" element={<Grants />} />
+            </Routes>
+          </main>
+        </div>
+      </div>
+    </Router>
+  );
 }
 
-function daisybutton(){
-    return (<div className="p-4">
-        <button className="btn btn-primary">Click Me!</button>
-    </div>);
-}
-
-function HelloWorld(){
-  return <h1 className="text-3xl font-bold underline" > Fuck you </h1>;
-}
-export default App
+export default App;
