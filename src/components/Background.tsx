@@ -1,16 +1,8 @@
 // BlockchainBackground.tsx
 
 const Background = () => {
-
-
-
     // Always use full number of circles
     const numCircles = 8;
-
-
-
-    // Debug overlay
-    const showDebug = false; // Set to true to see debug info
 
     return (
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -30,8 +22,6 @@ const Background = () => {
                     backfaceVisibility: 'hidden',
                 }} />
             </div>
-
-
 
             {/* Floating circles */}
             <div className="absolute inset-0">
@@ -80,8 +70,6 @@ const Background = () => {
                     transform: 'translateZ(0)',
                 }}
             />
-
-
 
             {/* CSS Animations */}
             <style >{`

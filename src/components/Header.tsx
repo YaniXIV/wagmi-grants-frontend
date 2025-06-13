@@ -5,24 +5,6 @@ const Header: React.FC = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  const scrollToSignIn = () => {
-    if (location.pathname === '/') {
-      const signInSection = document.querySelector('.backdrop-blur-lg.bg-purple-900\\/10.rounded-3xl');
-      if (signInSection) {
-        const headerOffset = 100; // Adjust this value based on your header height
-        const elementPosition = signInSection.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset - (window.innerHeight / 2) + (signInSection.clientHeight / 2);
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    } else {
-      window.location.href = '/';
-    }
-  };
-
   return (
     <header className="py-4">
       <div className="container mx-auto px-4">
