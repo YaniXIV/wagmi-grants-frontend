@@ -1,43 +1,49 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
+import ethereumLogo from '../assets/cryptologos/ethereum-eth-logo.svg';
+import polygonLogo from '../assets/cryptologos/polygon-matic-logo.svg';
+import optimismLogo from '../assets/cryptologos/optimism-ethereum-op-logo.svg';
+import solanaLogo from '../assets/cryptologos/solana-sol-logo.svg';
+import aptosLogo from '../assets/cryptologos/aptos-apt-logo.svg';
+import uniswapLogo from '../assets/cryptologos/uniswap-uni-logo.svg';
 
 const Grants: React.FC = () => {
   const majorEcosystems = [
     {
       name: "Ethereum Foundation",
       grant: "Up to $250,000",
-      logo: "/src/assets/cryptologos/ethereum-eth-logo.svg",
+      logo: ethereumLogo,
       description: "Supporting innovative projects in the Ethereum ecosystem"
     },
     {
       name: "Polygon Village",
       grant: "Up to $100,000",
-      logo: "/src/assets/cryptologos/polygon-matic-logo.svg",
+      logo: polygonLogo,
       description: "Building the future of Polygon ecosystem"
     },
     {
       name: "Optimism",
       grant: "Retroactive funding",
-      logo: "/src/assets/cryptologos/optimism-ethereum-op-logo.svg",
+      logo: optimismLogo,
       description: "Rewarding past contributions to the Optimism ecosystem"
     },
     {
       name: "Solana",
       grant: "Ecosystem support",
-      logo: "/src/assets/cryptologos/solana-sol-logo.svg",
+      logo: solanaLogo,
       description: "Accelerating Solana ecosystem growth"
     },
     {
       name: "Aptos",
       grant: "Ecosystem support",
-      logo: "/src/assets/cryptologos/aptos-apt-logo.svg",
+      logo: aptosLogo,
       description: "Building the next generation of Web3"
     },
     {
       name: "Uniswap",
       grant: "DeFi development",
-      logo: "/src/assets/cryptologos/uniswap-uni-logo.svg",
+      logo: uniswapLogo,
       description: "Advancing decentralized finance"
     }
   ];

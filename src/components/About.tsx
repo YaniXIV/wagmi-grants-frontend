@@ -1,5 +1,6 @@
 import React from 'react';
 import Footer from './Footer';
+import yanixivImage from '../assets/yanixiv.jpeg';
 
 const About: React.FC = () => {
   return (
@@ -30,14 +31,14 @@ const About: React.FC = () => {
                 role: "Co-Founder & CEO",
                 bio: "Passionate about Web3 and building the future of decentralized technology",
                 github: "YaniXIV",
-                image: "/src/assets/yanixiv.jpeg"
+                image: yanixivImage
               },
               {
                 name: "Your Name",
                 role: "Co-Founder & CTO",
                 bio: "Expert in blockchain technology and AI systems",
                 github: "your-github",
-                image: "/src/assets/your-image.jpeg"
+                image: "https://ui-avatars.com/api/?name=Your+Name&background=8b5cf6&color=fff"
               }
             ].map((member, index) => (
               <div key={index} className="backdrop-blur-lg bg-purple-900/5 rounded-2xl p-6 border border-purple-200/10 flex flex-col items-center">
