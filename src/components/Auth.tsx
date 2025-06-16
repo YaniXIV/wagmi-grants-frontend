@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
+import { signIn, signUp } from '../api/client';
 
 interface AuthFormData {
   email: string;
+  username: string;
   password: string;
   confirmPassword?: string;
 }
@@ -12,6 +14,7 @@ const Auth: React.FC = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [formData, setFormData] = useState<AuthFormData>({
     email: '',
+    username: '',
     password: '',
     confirmPassword: ''
   });
@@ -29,25 +32,20 @@ const Auth: React.FC = () => {
     }
 
     try {
-      // TODO: Replace with your actual API endpoint
-      const response = await fetch(`/api/auth/${isSignIn ? 'signin' : 'signup'}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Authentication failed');
+      if (isSignIn) {
+        const { token } = await signIn({ 
+          email: formData.email, 
+          password: formData.password 
+        });
+        localStorage.setItem('authToken', token);
+      } else {
+        const { token } = await signUp({ 
+          email: formData.email, 
+          username: formData.username,
+          password: formData.password 
+        });
+        localStorage.setItem('authToken', token);
       }
-
-      const data = await response.json();
-      // Store the token in localStorage or your preferred storage method
-      localStorage.setItem('authToken', data.token);
       
       // Navigate to the project form page
       navigate('/submit-project');
@@ -69,6 +67,7 @@ const Auth: React.FC = () => {
     setError('');
     setFormData({
       email: '',
+      username: '',
       password: '',
       confirmPassword: ''
     });
@@ -103,6 +102,23 @@ const Auth: React.FC = () => {
                 required
               />
             </div>
+
+            {!isSignIn && (
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-purple-100/90 text-lg">Username</span>
+                </label>
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  className="input input-bordered w-full bg-purple-900/5 border-purple-200/10 text-purple-100 placeholder-purple-200/40 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl"
+                  placeholder="Choose a username"
+                  required
+                />
+              </div>
+            )}
 
             <div className="form-control">
               <label className="label">
